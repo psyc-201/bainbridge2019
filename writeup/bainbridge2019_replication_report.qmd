@@ -105,6 +105,71 @@ Several aspects of the current replication differ from Bainbridge et al. (2019),
 
 Despite these differences, the fundamental experimental design, task structure, and theoretical question remain unchanged. The original effect was extremely large, and the theoretical prediction that memory drawings contain image-specific visual information beyond category-level gist representations—should hold robustly across the methodological variations introduced here. The modifications primarily serve to adapt the study from AMT's single-trial HIT framework to a modern multi-trial jsPsych implementation while improving experimental control, data quality, and reproducibility practices. If the effect fails to replicate, the differences documented here provide a framework for understanding potential boundary conditions, though such failure would be surprising given the magnitude of the original effect.
 
+### Reliability and validity
+
+Looking at the original Bainbridge et al. (2019) paper:
+
+## Key Construct and Measure
+
+**Construct:** Drawing diagnosticity/recognizability - the extent to which drawings contain sufficient visual information to be matched to their corresponding images
+
+**Measure:** Proportion of independent raters who correctly match each drawing to its target image in a 3-alternative forced choice task (3AFC), ranging from 0 (no raters correct) to 1.0 (all raters correct)
+
+## Reliability Evidence in Original Paper
+
+**What they report:**
+- Used **24 independent raters per drawing** (N = 1,101 total raters)
+- Reported standard deviations: DR drawings SD = 10.9%, Category drawings SD = 17.4%
+- Stated: "Each worker could complete as many trials as they desired, and each worker on average completed 58.2 trials" (p. 11)
+- Confirmed results with **permutation tests** (100,000 iterations): "all p < 10^−5" (p. 3)
+
+**What they DON'T explicitly report:**
+- No inter-rater reliability coefficients (e.g., ICC, Cronbach's alpha, Fleiss' kappa)
+- No discussion of test-retest reliability
+- No explicit mention of the word "reliability" in the methods or results
+
+**Implied reliability:**
+The use of 24 independent raters per drawing and relatively small standard deviations suggests high inter-rater agreement/reliability, but this is not formally quantified.
+
+## Validity Evidence in Original Paper
+
+**Construct validity:**
+- **Convergent evidence:** Delayed Recall drawings matched significantly above chance (84.3% vs. 33.3% chance), demonstrating they contain image-specific information
+- **Discriminant evidence:** Category Drawings performed near chance (30.7%), showing the measure can distinguish memory-based drawings from generic category representations
+- Multiple control conditions establish construct validity: Image Drawing (92.5% - upper bound), Immediate Recall (96.0% - no decay), Category Drawing (30.7% - category gist only)
+
+**Face validity:**
+- The task has high face validity - matching drawings to images is a direct, intuitive measure of whether the drawing captures the image
+
+**Criterion validity:**
+- Drawings are validated against the "ground truth" of the original images
+- No external criterion is cited, but the images themselves serve as the gold standard
+
+**Content validity:**
+- Not explicitly discussed, but the 3AFC design ensures raters choose from images within the same category, controlling for category-level information
+
+**What they DON'T cite:**
+- No prior studies establishing validity of this specific measure (appears to be novel)
+- No discussion of ecological validity or generalizability
+
+## Draft: Reliability and Validity Section
+
+Here's what you could add to your Methods:
+
+---
+
+### Reliability and Validity
+
+The primary construct of interest is drawing recognizability, operationalized as the proportin of independent raters who correctly match each drawing to its corresponding image in a 3AFC task. The measure ranges from 0 to 1, with chance performance at 1/3. The original study used 24 independent raters per drawing to assess recognizability, which provides a form of inter-rater reliability through aggregation across multiple judges. The relatively small standard deviations reported for both conditions suggest agreement among raters. Even though there was no precise report of inter-rater reliability, it was implicit in the sampling. Construct validity is also established through multiple control conditions, such as having Image Drawings and Immediate Recall in addition to Category Drawings. The task also has strong face validity, as matching drawings to photographs is a direct and intuitive assessment of visual information content. Even with a slightly different sample, the replication will assume the validity of the measure and ensure reliability with multiple raters per image. 
+
+**Additional reference to add:**
+
+Koo, T. K., & Li, M. Y. (2016). A guideline of selecting and reporting intraclass correlation coefficients for reliability research. *Journal of Chiropractic Medicine*, *15*(2), 155-163. https://doi.org/10.1016/j.jcm.2016.02.012
+
+---
+
+Does this capture what you need? Should I adjust the level of detail or emphasis on any particular aspect of reliability/validity?
+
 ### Methods Addendum (Post Data Collection)
 
 You can comment this section out prior to final report with data collection.
