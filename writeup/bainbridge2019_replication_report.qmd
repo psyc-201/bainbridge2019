@@ -50,7 +50,7 @@ The stimuli consist of real-world scene photographs from the SUN database (Xiao 
 
 The drawings are from the publicly available dataset associated with Bainbridge et al. (2019), accessed via [Harvard Dataverse](https://dataverse.harvard.edu/dataverse/drawingrecall). Two types of drawings will be used as stimuli for this replication experiment. First, Delayed Recall drawings (n = 34) were created by participants who studied 30 scene images for 10 seconds each, completed an 11-minute digit span distractor task, and then drew as many images as they could remember from memory. For each of the 34 target images in the selected categories, one Delayed Recall drawing will be selected from the available drawings for that image. When multiple drawings are available for an image, one will be randomly selected using R's `sample()` function to reduce researcher bias in drawing selection. Second, Category Drawings (n = 34) were created by participants who were given only the scene category name (e.g., "kitchen") and asked to draw a typical example of that category without viewing any specific image. Two Category Drawings per selected category will be randomly sampled from the 15 available Category Drawings per category in the original dataset. 
 
-All drawings are pen-and-paper sketches and scanned as JPG files. Filenames in the original dataset follow the format [condition]_[subnum]_[imnum]_[memorability]_[scene].jpg, enabling identification of which target image corresponds to each drawing.
+All drawings are pen-and-paper sketches and scanned as JPG files. Filenames in the original dataset follow the format `[condition]_[subnum]_[imnum]_[memorability]_[scene].jpg`, enabling identification of which target image corresponds to each drawing.
 
 ### Procedure	
 
@@ -74,8 +74,6 @@ At the participant level, we will exclude participants who meet any of the follo
 
 At the trial level, individual trials with response times less than 500 milliseconds will be excluded as anticipatory responses that do not reflect genuine matching judgments. After applying this trial-level exclusion, if more than 20% of the participant's trials are excluded, the entire participant will be excluded from analysis as their data is insufficiently reliable. 
 
-At the trial level, individual trials with response times less than 500 milliseconds will be excluded as anticipatory responses that do not reflect genuine matching judgments. After applying this trial-level exclusion, if more than 20% of a participant's trials are excluded, the entire participant will be excluded from analysis as their data is insufficiently reliable.
-
 **Data preparation and unit of analysis:**
 
 The primary unit of analysis is the drawing, with accuracy computed as the proportion of raters who correctly matched each drawing to its target image. Data preparation will proceed in three stages. First, at the trial level, accuracy is a binary-coded variable where 1 indicates the participant correctly selected the target image and 0 indicates the selection of a foil image. Second, at the drawing level, we will compute the proportion of raters who correctly identified the target image using the formula `(number of correct responses) / (total number of valid ratings for this drawing)`. Each of the 68 drawings will yield one accuracy score ranging from 0 to 1, aggregated across 10-12 independent raters after applying all exclusion criteria. Third, each drawing is labeled as either "Delayed Recall" or "Category" based on the dataset. 
@@ -90,7 +88,7 @@ As a sensitivity analysis to assess robustness of findings, we will also report 
 
 **Criteria for successful replication:**
 
-The replication will be considered successful given the following two conditions. First, the Wilcoxon rank-sum test shows that Delayed Recalled drawings have significantly higher matching accuracy than Category Drawings (p < 0.05, two-tailed). Second, the effect size should at least be medium magnitude (rank-biserial r \geq 0.3), though I anticipate a much larger effect given the original study's Z-score of 9.29 and p-value of 1.58 \times 10^{-20}. A close replication would show Delayed Recall accuracy substantially above chance (original: 84.3%), Category Drawing accuracy near chance (original: 30.7%), and a very large effect size. 
+The replication will be considered successful given the following two conditions. First, the Wilcoxon rank-sum test shows that Delayed Recalled drawings have significantly higher matching accuracy than Category Drawings (p < 0.05, two-tailed). Second, the effect size should at least be medium magnitude (rank-biserial $r \geq 0.3$), though we anticipate a much larger effect given the original study's Z-score of 9.29 and p-value of $1.58 \times 10^{-20}$. A close replication would show Delayed Recall accuracy substantially above chance (original: 84.3%), Category Drawing accuracy near chance (original: 30.7%), and a very large effect size. 
 
 **Secondary exploratory analyses:**
 
