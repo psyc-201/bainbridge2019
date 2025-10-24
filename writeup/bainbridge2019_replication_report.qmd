@@ -121,23 +121,29 @@ You can comment this section out prior to final report with data collection.
 
 ### Data preparation
 
-Data preparation following the analysis plan.
-	
-```{r include=F}
-### Data Preparation
+*[to be completed after data collection]*
 
-#### Load Relevant Libraries and Functions
+We will first identify and exclude participants who: (1) failed 2 or more of the 3 attention check trials, (2) did not complete all 60 trials within the 30-minute session limit, (3) reported significant technical problems that impaired performance, or (4) showed evidence of non-compliance (median response time below 1 second or overall accuracy below 33.3%). After applying these exclusions, we will report the final sample size, number of participants excluded by each criterion, and basic demographic characteristics (age, gender) of the retained sample.
 
-#### Import data
+For retained participants, we will exclude individual trials with response times below 500 milliseconds as anticipatory responses. We will then check whether any participant had more than 20% of their trials excluded by this criterion; if so, that entire participant will be removed from the dataset as insufficiently reliable.
 
-#### Data exclusion / filtering
+For each of the 68 drawings, we will compute accuracy as the proportion of valid ratings that correctly identified the target image. Specifically, for each drawing, we will count the number of participants who selected the target image and divide by the total number of valid ratings for that drawing (expected to be 10-12 per drawing after exclusions). This yields one accuracy score per drawing, ranging from 0 (no raters identified the target) to 1 (all raters identified the target). Each drawing will be labeled as "Delayed Recall" (n = 34) or "Category" (n = 34) based on its filename and condition assignment.
 
-#### Prepare data for analysis - create columns etc.
-```
+The final dataset will contain 68 rows (one per drawing) with the following variables: `drawing_id`, `condition` (Delayed Recall or Category), `category`, `memorability` (high or low), `target_image`, `number_of_raters`, `number_correct`, and `accuracy` (proportion correct).
+
+Descriptive statistics will be presented in a table showing the number of drawings, mean accuracy, standard deviation, median, minimum, and maximum for each condition. A histogram will display the distribution of accuracy scores for both conditions with a reference line at chance performance (33.3%). 
 
 ### Confirmatory analysis
 
-The analyses as specified in the analysis plan.  
+The primary hypothesis will be tested using the two-tailed Wilcoxon rank-sum test as specified in the Analysis Plan.
+
+**Assumption checks:** Prior to the confirmatory test, we will assess the appropriateness of the supplementary parametric analysis by checking normality and homogeneity of variance. Shapiro-Wilk tests will be conducted on both conditions' accuracy distributions to assess normality. Quantile-quantile plots will be generated for visual inspection of normality. Levene's test will assess homogeneity of variance between conditions. Results of these checks will determine whether the supplementary t-test uses standard Student's t-test (if assumptions met) or Welch's correction (if variances unequal). If either group shows strong violation of normality (Shapiro-Wilk p < 0.01), we will prioritize the Wilcoxon test as the primary analysis and report it most prominently.
+
+**Expected reporting:** 
+
+Delayed Recall drawings (Median = X.XX) were [significantly more / not more] recognizable than Category Drawings (Median = X.XX), W = X, Z = X, [p = X], rank-biserial r = X, 95% CI [X, X].
+
+Delayed Recall drawings (M = X, SD = X) were [significantly more / not significantly more] recognizable than Category Drawings (M = X, SD = X), t(X) = X,[p = X], Cohen's d = X, 95% CI [X, X].
 
 *Side-by-side graph with original graph is ideal here*
 
@@ -162,8 +168,6 @@ Add open-ended commentary (if any) reflecting (a) insights from follow-up explor
 Bainbridge, W. A., Hall, E. H., & Baker, C. I. (2019). Drawings of real-world scenes during free recall reveal detailed object and spatial information in memory. *Nature Communications*, *10*, 5. https://doi.org/10.1038/s41467-018-07830-6
 
 de Leeuw, J. R. (2015). jsPsych: A JavaScript library for creating behavioral experiments in a web browser. *Behavior Research Methods*, *47*(1), 1-12. https://doi.org/10.3758/s13428-014-0458-y
-
-Faul, F., Erdfelder, E., Lang, A.-G., & Buchner, A. (2007). G*Power 3: A flexible statistical power analysis program for the social, behavioral, and biomedical sciences. *Behavior Research Methods*, *39*(2), 175-191. https://doi.org/10.3758/BF03193146
 
 Isola, P., Xiao, J., Torralba, A., & Oliva, A. (2011). What makes an image memorable? In *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition* (pp. 145-152). IEEE. https://doi.org/10.1109/CVPR.2011.5995721
 
