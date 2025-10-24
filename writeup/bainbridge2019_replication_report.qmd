@@ -175,6 +175,4 @@ de Leeuw, J. R. (2015). jsPsych: A JavaScript library for creating behavioral ex
 
 Isola, P., Xiao, J., Torralba, A., & Oliva, A. (2011). What makes an image memorable? In *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition* (pp. 145-152). IEEE. https://doi.org/10.1109/CVPR.2011.5995721
 
-Peer, E., Brandimarte, L., Samat, S., & Acquisti, A. (2017). Beyond the Turk: Alternative platforms for crowdsourcing behavioral research. *Journal of Experimental Social Psychology*, *70*, 153-163. https://doi.org/10.1016/j.jesp.2016.01.006
-
 Xiao, J., Hays, J., Ehinger, K. A., Oliva, A., & Torralba, A. (2010). SUN database: Large-scale scene recognition from abbey to zoo. In *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition* (pp. 3485-3492). IEEE. https://doi.org/10.1109/CVPR.2010.5539970
