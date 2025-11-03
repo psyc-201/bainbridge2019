@@ -436,9 +436,63 @@
 
         }
 
-        
-        
-        </script>
+        // create attention check trial
+        function createAttentionCheckTrial(check, index) {
+            const shuffled_images = jsPsych.randomization.shuffle([...check.images]);
+            const correct_image = check.images[check.correct_position];
+            const correct_response = shuffled_images.indexOf(correct_image);
 
+            const trial = {
+                type: jsPsychImageButtonResponse,
+                stimulus: `<div style="padding: 50px; font-size: 24px; font-weight: bold;">${check.instruction}</div>`,
+                stimulus_height: null,
+                choices: shuffled_images,
+                button_html: '<button class="jspsych-btn"><img src="%choice%" style="width:380px;"></button>',
+                prompt: '',
+                data: {
+                    task: 'attention_check',
+                    is_attention_check: true,
+                    attention_check_number: index,
+                    correct_response: correct_response,
+                    participant_id: participant_id
+                },
+                on_finish: function(data) {
+                    data.correct = (data.response === correct_response);
+                }
+            };
+
+            return trial;
+            
+        }
+
+        function saveData() {
+            const data = jsPsych.data.get().json();
+            
+            dataPipe(OSF_CONFIG.experimentID, 'data', {
+                data: data,
+                filename: OSF_CONFIG.filename,
+                format: 'json'
+            }).then(() => {
+                console.log('Data saved successfully');
+            }).catch((error) => {
+                console.error('Error saving data:', error);
+            });
+        }
+        
+        // display completion code
+        function displayCompletionCode() {
+            document.body.innerHTML = `
+                <div style="max-width: 800px; margin: 100px auto; text-align: center; font-family: Arial, sans-serif;">
+                    <h2>Thank you for participating!</h2>
+                    <p>You have completed the study.</p>
+                    <p><strong>Your Prolific completion code is:</strong></p>
+                    <h1 style="color: #2196F3; font-family: monospace; font-size: 48px;">${COMPLETION_CODE}</h1>
+                    <p>Please copy this code and return to Prolific to paste it there.</p>
+                </div>
+            `;
+        }
+        </script>
+</head>
+<body></body>
 
 </html>
