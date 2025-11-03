@@ -329,9 +329,113 @@
             const experimental_trials = sampled_drawings.map((stimulus, index) => {
                 return createTrial(stimulus, index, false);
             });
+
+            // create attention check trials
+            const attention_trials = ATTENTION_CHECKS.map((check, index) => {
+                return createAttentionCheckTrial(check, index);
+            });
+
+            // randomly insert attention checks
+            const positions = jsPsych.randomization.sampleWithoutReplacement(
+                Array.from({length: EXPERIMENT_PARAMS.n_trials}, (_, i) => i),
+                EXPERIMENT_PARAMS.n_attention_checks
+            ).sort((a, b) => a - b);
+
+            // merge trials and attention checks
+            let trial_counter = 0;
+            let attention_counter = 0;
+
+            for (let i = 0; i < EXPERIMENT_PARAMS.n_trials + EXPERIMENT_PARAMS.n_attention_checks; i++) {
+                if (positions.includes(trial_counter) && attention_counter < attention_trials.length) {
+                    all_trials.push(attention_trials[attention_counter]);
+                    attention_counter++;
+                }
+                else if (trial_counter < experimental_trials.length) {
+                    all_trials.push(experimental_trials[trial_counter]);
+                    trial_counter++;
+                }
+            }
+            return all_trials;
         }
         
-        
+        // create single trial
+        function createTrial(stimulus, trial_number, is_attention_check) {
+            // randomize position of the 3 images
+            const images = [
+                stimulus.high_image,
+                stimulus.low_image,
+                stimulus.foil_image
+            ];
+
+            const shuffled_positions = jsPsych.randomization.shuffle([0,1,2]);
+            const shuffled_images = shuffled_positions.map(pos => images[pos]);
+
+            // correct answer position for delayed recall only
+            let correct_position = null;
+            if (stimulus.condition === 'delayed_recall') {
+                const target_idx = images.indexOf(stimulus.target_image);
+                correct_position = shuffled_positions.indexOf(target_idx);
+            }
+
+            const trial = {
+                type: jsPsychImageButtonResponse,
+                stimulus: stimulus.drawing,
+                stimulus_height: 350,
+                stimulus_width: null,
+                maintain_aspect_ratio: true,
+                choices: shuffled_images,
+                button_html: '<button class="jspsych-btn"><img src="%choice%" style="width:380px;"></button>',
+                prompt: '<p>Which photograph does this drawing best represent?</p>',
+                data: {
+                    task: 'main_trial',
+                    trial_number: trial_number,
+                    is_attention_check: is_attention_check,
+                    drawing_filename: stimulus.drawing,
+                    condition: stimulus.condition,
+                    category: stimulus.category,
+                    memorability: stimulus.memorability,
+                    target_image: stimulus.target_image,
+                    high_image: stimulus.high_image,
+                    low_image: stimulus.low_image,
+                    foil_image: stimulus.foil_image,
+                    image_position_left: shuffled_images[0],
+                    image_position_center: shuffled_images[1],
+                    image_position_right: shuffled_images[2],
+                    correct_position: correct_position,
+                    participant_id: participant_id
+                },
+                on_finish: function(data) {
+                    // determine which image was selected
+                    data.selected_image = shuffled_images[data.response];
+
+                    // for delayed recall, calculate accuracy
+                    if (stimulus.condition === 'delayed_recall') {
+                        data.correct = (data.response === correct_position);
+                    }
+
+                    // for category drawings, record which type was selected
+                    if (stimulus.condition === 'category') {
+                        if (data.selected_image === stimulus.high_image) {
+                            data.selected_type = 'high';
+                        }
+                        else if (data.selected_image === stimulus.low_image) {
+                            data.selected_type = 'low';
+                        }
+                        else {
+                            data.selected_type = 'foil';
+                        }
+                    }
+
+                    // update progress bar
+                    const progress = ((trial_number + 1) / EXPERIMENT_PARAMS.n_trials);
+                    jsPsych.setProgressBar(progress);
+                }
+            };
+
+            return trial;
+
+        }
+
         
         
         </script>
