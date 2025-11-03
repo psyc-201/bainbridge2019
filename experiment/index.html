@@ -126,9 +126,207 @@
 
         }
 
+        // attention check trials
+        const ATTENTION_CHECKS = [
+            {
+                type: 'text_instruction',
+                instruction: 'Please select the LEFTMOST image to show you are paying attention.',
+                images: [], // TODO
+                correct_position: 0 // 0=left
+            },
+            {
+                type: 'text_instruction',
+                instruction: 'Please select the CENTER image to show you are paying attention.',
+                images: [], // TODO
+                correct_position: 1
+
+            },
+            {
+                type: 'text_instruction',
+                instruction: 'Please select the RIGHTMOST image to show you are paying attention.',
+                images: [], // TODO
+                correct_position: 2
+
+            },
+        ];
+
+        // experiment logic
+
+        let jsPsych;
+        let timeline = [];
+        let participant_id;
+        let start_time;
+
+        window.onload = function() {
+            // get prolific ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            participant_id = urlParams.get('PROLIFIC_ID') || 'debug_' + Date.now();
+
+            // datapipe filename with participant ID
+            OSF_CONFIG.filename = `${participant_id}.json`;
+
+            jsPsych = initJsPsych({
+                show_progress_bar: true,
+                auto_update_progress_bar: false,
+                message_progress_bar: 'Progress',
+                on_finish: function() {
+                    displayCompletionCode();
+                },
+                on_close: function() {
+                    saveData();
+                }
+            });
+
+            buildTimeline();
+            jsPsych.run(timeline);
+        }
         
+        // build experiment timeline
+        function buildTimeline() {
+            // browser check
+            const browser_check = {
+                type: jsPsychBrowserCheck,
+                inclusion_function: (data) => {
+                    return !data.mobile;
+                },
+                exclusion_message: (data) => {
+                    if (data.mobile) {
+                        return '<p>This experiment must be completed on a desktop or laptop computer. Mobile devices are not supported.</p><p>Please return to this experiment on a desktop or laptop computer.</p>';
+                    }
+                }
+            };
+            timeline.push(browser_check);
+
+            // welcome
+            const welcome = {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: `
+                    <div style="max-width: 800px; margin: auto;">
+                        <h1>Welcome to the Drawing Match!</h1>
+                        <p>Thank you for participating in this study.</p>
+                        <p>In this experiment, you will see drawings of everyday scenes. Your task is to match each drawing to one of three photographs.</p>
+                        <p>The experiment will take approximately 12 minutes to complete.</p>
+                        <p><strong>Important:</strong></p>
+                        <ul style="text-align: left;">
+                            <li>Please complete this study in a quiet environment without distractions</li>
+                            <li>Do not use the back button in your browser</li>
+                            <li>Please stay focused on the task throughout</li>
+                        </ul>
+                        <p>Press the <strong>SPACE BAR</strong> to continue.</p>
+                    </div>
+                `,
+                choices: [' ']
+            };
+            timeline.push(welcome);
+
+            // instructions
+            const instructions = {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: `
+                    <div style="max-width: 800px; margin: auto;">
+                        <h2>Instructions</h2>
+                        <p>On each trial, you will see:</p>
+                        <ul style="text-align: left;">
+                            <li>One drawing at the top of the screen</li>
+                            <li>Three photographs below the drawing</li>
+                        </ul>
+                        <p><strong>Your task:</strong> Click on the photograph that you think the drawing best represents.</p>
+                        <p>The three photographs will always be from the same scene category (e.g., three different kitchens).</p>
+                        <p>Even if the drawing is rough or incomplete, please try your best to make a match.</p>
+                        <p>There is no time limit for each trial, but please respond as accurately as you can.</p>
+                        <p>You will complete approximately 60 trials.</p>
+                        <p>Press the <strong>SPACE BAR</strong> when you're ready to begin.</p>
+                    </div>
+                `,
+                choices: [' '],
+                on_finish: function() {
+                    start_time = Date.now();
+                }
+            };
+            timeline.push(instructions);
+
+            // generate trials
+            const trials = generateTrials();
+            timeline.push(...trials);
+
+            // ending survey
+            const technical_difficulties = {
+                type: jsPsychSurveyMultiChoice,
+                questions: [
+                    {
+                        prompt: "Did you experience any technical difficulties during the task?",
+                        name: 'technical_difficulties',
+                        options: ['Yes', 'No'],
+                        required: true
+                    }
+                ]
+            };
+            timeline.push(technical_difficulties);
+
+            const technical_explanation = {
+                type: jsPsychSurveyText,
+                questions: [
+                    {
+                        prompt: "If you experienced technical difficulties, please describe them briefly:",
+                        name: 'technical_explanation',
+                        rows: 3,
+                        required: false
+                    }
+                ]
+            };
+            timeline.push(technical_explanation);
+
+            const comments = {
+                type: jsPsychSurveyText,
+                questions: [
+                    {
+                        prompt: "Do you have any comments about the study?",
+                        name: 'comments',
+                        rows: 3,
+                        required: false
+                    }
+                ],
+                on_finish: function() {
+                    saveData();
+                }
+            };
+            timeline.push(comments);
+
+            // debrief
+            const debrief = {
+                type: jsPsychHtmlKeyboardResponse,
+                stimulus: function() {
+                    return `
+                        <div style="max-width: 800px; margin: auto;">
+                            <h2>Thank you for participating!</h2>
+                            <p>You have completed the study.</p>
+                            <p><strong>Your Prolific completion code is:</strong></p>
+                            <h1 style="color: #2196F3; font-family: monospace;">${COMPLETION_CODE}</h1>
+                            <p>Please copy this code and return to Prolific to paste it there.</p>
+                            <p>Press any key to finish.</p>
+                        </div>
+                    `;
+                },
+                choices: "ALL_KEYS"
+            };
+            timeline.push(debrief);
+        }
         
-        
+        // generate experimental trials
+        function generateTrials() {
+            const all_trials = [];
+
+            // get all drawings
+            const all_drawings = generateDrawingStimuli();
+
+            // randomly sample 60 drawings without replacement
+            const sampled_drawings = jsPsych.randomization.sampleWithoutReplacement(
+                all_drawings,
+                EXPERIMENT_PARAMS.n_trials
+            );
+
+            // create trial objects
+        }
         
         
         
