@@ -326,6 +326,9 @@
             );
 
             // create trial objects
+            const experimental_trials = sampled_drawings.map((stimulus, index) => {
+                return createTrial(stimulus, index, false);
+            });
         }
         
         
