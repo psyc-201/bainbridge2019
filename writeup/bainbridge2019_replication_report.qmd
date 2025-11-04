@@ -147,7 +147,7 @@ The primary hypothesis will be tested using the two-tailed Wilcoxon rank-sum tes
 
 **Expected reporting:** 
 
-Delayed Recall drawings (Median = X.XX) were [significantly more / not more] recognizable than Category Drawings (Median = X.XX), W = X, Z = X, [p = X], rank-biserial r = X, 95% CI [X, X].
+Delayed Recall drawings (Median = X) were [significantly more / not more] recognizable than Category Drawings (Median = X), W = X, Z = X, [p = X], rank-biserial r = X, 95% CI [X, X].
 
 Delayed Recall drawings (M = X, SD = X) were [significantly more / not significantly more] recognizable than Category Drawings (M = X, SD = X), t(X) = X,[p = X], Cohen's d = X, 95% CI [X, X].
 
