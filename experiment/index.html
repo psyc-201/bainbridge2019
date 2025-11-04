@@ -100,39 +100,722 @@
         
         function generateDrawingStimuli() {
             const stimuli = [];
-            // TODO: MANUALLY LOAD ALL THE IMAGES OR GET THEM AUTOMATICALLY?
-            CATEGORIES.forEach(category => {
-                // 2 delayed recall drawings per category
-                ['high', 'low'].forEach(memorability => {
-                    stimuli.push({
-                        drawing: ``,
-                        condition: 'delayed_recall',
-                        category: category,
-                        target_image: ``,
-                        memorability: memorability,
-                        high_image: `../data/stim/${category}_high.jpg`,
-                        low_image: `../data/stim/${category}_low.jpg`,
-                        foil_image: `../data/stim/${category}_foil.jpg`
-                    });
-                });
-            
-                // 2 category drawings per category
-                [1, 2].forEach(num => {
-                    stimuli.push({
-                        drawing: ``,
-                        condition: 'category',
-                        category: category,
-                        target_image: null,  // no predetermined target for category drawings
-                        memorability: null,
-                        high_image: `../data/stim/${category}_high.jpg`,
-                        low_image: `../data/stim/${category}_low.jpg`,
-                        foil_image: `../data/stim/${category}_foil.jpg`
-                    });
-                });
+
+            // AMUSEMENTPARK
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/25_13_high_amusementpark.jpg',
+                condition: 'delayed_recall',
+                category: 'amusementpark',
+                target_image: '../data/stim/amusementpark_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/amusementpark_high.jpg',
+                low_image: '../data/stim/amusementpark_low.jpg',
+                foil_image: '../data/stim/amusementpark_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/24_9_low_amusementpark.jpg',
+                condition: 'delayed_recall',
+                category: 'amusementpark',
+                target_image: '../data/stim/amusementpark_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/amusementpark_high.jpg',
+                low_image: '../data/stim/amusementpark_low.jpg',
+                foil_image: '../data/stim/amusementpark_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_27_amusementpark.jpg',
+                condition: 'category',
+                category: 'amusementpark',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/amusementpark_high.jpg',
+                low_image: '../data/stim/amusementpark_low.jpg',
+                foil_image: '../data/stim/amusementpark_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c8_28_amusementpark.jpg',
+                condition: 'category',
+                category: 'amusementpark',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/amusementpark_high.jpg',
+                low_image: '../data/stim/amusementpark_low.jpg',
+                foil_image: '../data/stim/amusementpark_foil.jpg'
+            });
+
+            // BADLANDS
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/15_12_high_badlands.jpg',
+                condition: 'delayed_recall',
+                category: 'badlands',
+                target_image: '../data/stim/badlands_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/badlands_high.jpg',
+                low_image: '../data/stim/badlands_low.jpg',
+                foil_image: '../data/stim/badlands_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/7_9_low_badlands.jpg',
+                condition: 'delayed_recall',
+                category: 'badlands',
+                target_image: '../data/stim/badlands_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/badlands_high.jpg',
+                low_image: '../data/stim/badlands_low.jpg',
+                foil_image: '../data/stim/badlands_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c1_27_badlands.jpg',
+                condition: 'category',
+                category: 'badlands',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/badlands_high.jpg',
+                low_image: '../data/stim/badlands_low.jpg',
+                foil_image: '../data/stim/badlands_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c11_15_badlands.jpg',
+                condition: 'category',
+                category: 'badlands',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/badlands_high.jpg',
+                low_image: '../data/stim/badlands_low.jpg',
+                foil_image: '../data/stim/badlands_foil.jpg'
+            });
+
+            // BATHROOM
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/7_19_high_bathroom.jpg',
+                condition: 'delayed_recall',
+                category: 'bathroom',
+                target_image: '../data/stim/bathroom_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/bathroom_high.jpg',
+                low_image: '../data/stim/bathroom_low.jpg',
+                foil_image: '../data/stim/bathroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/15_2_low_bathroom.jpg',
+                condition: 'delayed_recall',
+                category: 'bathroom',
+                target_image: '../data/stim/bathroom_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/bathroom_high.jpg',
+                low_image: '../data/stim/bathroom_low.jpg',
+                foil_image: '../data/stim/bathroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c13_4_bathroom.jpg',
+                condition: 'category',
+                category: 'bathroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/bathroom_high.jpg',
+                low_image: '../data/stim/bathroom_low.jpg',
+                foil_image: '../data/stim/bathroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c7_10_bathroom.jpg',
+                condition: 'category',
+                category: 'bathroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/bathroom_high.jpg',
+                low_image: '../data/stim/bathroom_low.jpg',
+                foil_image: '../data/stim/bathroom_foil.jpg'
+            });
+
+            // BEDROOM
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/18_5_high_bedroom.jpg',
+                condition: 'delayed_recall',
+                category: 'bedroom',
+                target_image: '../data/stim/bedroom_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/bedroom_high.jpg',
+                low_image: '../data/stim/bedroom_low.jpg',
+                foil_image: '../data/stim/bedroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/27_3_low_bedroom.jpg',
+                condition: 'delayed_recall',
+                category: 'bedroom',
+                target_image: '../data/stim/bedroom_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/bedroom_high.jpg',
+                low_image: '../data/stim/bedroom_low.jpg',
+                foil_image: '../data/stim/bedroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c1_7_bedroom.jpg',
+                condition: 'category',
+                category: 'bedroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/bedroom_high.jpg',
+                low_image: '../data/stim/bedroom_low.jpg',
+                foil_image: '../data/stim/bedroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c7_3_bedroom.jpg',
+                condition: 'category',
+                category: 'bedroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/bedroom_high.jpg',
+                low_image: '../data/stim/bedroom_low.jpg',
+                foil_image: '../data/stim/bedroom_foil.jpg'
+            });
+
+            // DININGROOM
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/4_19_high_diningroom.jpg',
+                condition: 'delayed_recall',
+                category: 'diningroom',
+                target_image: '../data/stim/diningroom_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/diningroom_high.jpg',
+                low_image: '../data/stim/diningroom_low.jpg',
+                foil_image: '../data/stim/diningroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/6_11_low_diningroom.jpg',
+                condition: 'delayed_recall',
+                category: 'diningroom',
+                target_image: '../data/stim/diningroom_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/diningroom_high.jpg',
+                low_image: '../data/stim/diningroom_low.jpg',
+                foil_image: '../data/stim/diningroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c1_2_diningroom.jpg',
+                condition: 'category',
+                category: 'diningroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/diningroom_high.jpg',
+                low_image: '../data/stim/diningroom_low.jpg',
+                foil_image: '../data/stim/diningroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c9_19_diningroom.jpg',
+                condition: 'category',
+                category: 'diningroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/diningroom_high.jpg',
+                low_image: '../data/stim/diningroom_low.jpg',
+                foil_image: '../data/stim/diningroom_foil.jpg'
+            });
+
+            // FARM
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/31_5_high_farm.jpg',
+                condition: 'delayed_recall',
+                category: 'farm',
+                target_image: '../data/stim/farm_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/farm_high.jpg',
+                low_image: '../data/stim/farm_low.jpg',
+                foil_image: '../data/stim/farm_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/25_3_low_farm.jpg',
+                condition: 'delayed_recall',
+                category: 'farm',
+                target_image: '../data/stim/farm_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/farm_high.jpg',
+                low_image: '../data/stim/farm_low.jpg',
+                foil_image: '../data/stim/farm_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c4_7_farm.jpg',
+                condition: 'category',
+                category: 'farm',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/farm_high.jpg',
+                low_image: '../data/stim/farm_low.jpg',
+                foil_image: '../data/stim/farm_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c1_14_farm.jpg',
+                condition: 'category',
+                category: 'farm',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/farm_high.jpg',
+                low_image: '../data/stim/farm_low.jpg',
+                foil_image: '../data/stim/farm_foil.jpg'
+            });
+
+            // FOUNTAIN
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/4_22_high_fountain.jpg',
+                condition: 'delayed_recall',
+                category: 'fountain',
+                target_image: '../data/stim/fountain_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/fountain_high.jpg',
+                low_image: '../data/stim/fountain_low.jpg',
+                foil_image: '../data/stim/fountain_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/17_8_low_fountain.jpg',
+                condition: 'delayed_recall',
+                category: 'fountain',
+                target_image: '../data/stim/fountain_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/fountain_high.jpg',
+                low_image: '../data/stim/fountain_low.jpg',
+                foil_image: '../data/stim/fountain_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c4_24_fountain.jpg',
+                condition: 'category',
+                category: 'fountain',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/fountain_high.jpg',
+                low_image: '../data/stim/fountain_low.jpg',
+                foil_image: '../data/stim/fountain_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c2_20_fountain.jpg',
+                condition: 'category',
+                category: 'fountain',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/fountain_high.jpg',
+                low_image: '../data/stim/fountain_low.jpg',
+                foil_image: '../data/stim/fountain_foil.jpg'
+            });
+
+            // GARDEN
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/31_3_high_garden.jpg',
+                condition: 'delayed_recall',
+                category: 'garden',
+                target_image: '../data/stim/garden_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/garden_high.jpg',
+                low_image: '../data/stim/garden_low.jpg',
+                foil_image: '../data/stim/garden_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/26_2_low_garden.jpg',
+                condition: 'delayed_recall',
+                category: 'garden',
+                target_image: '../data/stim/garden_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/garden_high.jpg',
+                low_image: '../data/stim/garden_low.jpg',
+                foil_image: '../data/stim/garden_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c4_1_garden.jpg',
+                condition: 'category',
+                category: 'garden',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/garden_high.jpg',
+                low_image: '../data/stim/garden_low.jpg',
+                foil_image: '../data/stim/garden_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_28_garden.jpg',
+                condition: 'category',
+                category: 'garden',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/garden_high.jpg',
+                low_image: '../data/stim/garden_low.jpg',
+                foil_image: '../data/stim/garden_foil.jpg'
+            });
+
+            // HOUSE
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/12_7_high_house.jpg',
+                condition: 'delayed_recall',
+                category: 'house',
+                target_image: '../data/stim/house_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/house_high.jpg',
+                low_image: '../data/stim/house_low.jpg',
+                foil_image: '../data/stim/house_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/7_17_low_house.jpg',
+                condition: 'delayed_recall',
+                category: 'house',
+                target_image: '../data/stim/house_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/house_high.jpg',
+                low_image: '../data/stim/house_low.jpg',
+                foil_image: '../data/stim/house_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c10_15_house.jpg',
+                condition: 'category',
+                category: 'house',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/house_high.jpg',
+                low_image: '../data/stim/house_low.jpg',
+                foil_image: '../data/stim/house_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_29_house.jpg',
+                condition: 'category',
+                category: 'house',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/house_high.jpg',
+                low_image: '../data/stim/house_low.jpg',
+                foil_image: '../data/stim/house_foil.jpg'
+            });
+
+            // KITCHEN
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/11_9_high_kitchen.jpg',
+                condition: 'delayed_recall',
+                category: 'kitchen',
+                target_image: '../data/stim/kitchen_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/kitchen_high.jpg',
+                low_image: '../data/stim/kitchen_low.jpg',
+                foil_image: '../data/stim/kitchen_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/21_6_low_kitchen.jpg',
+                condition: 'delayed_recall',
+                category: 'kitchen',
+                target_image: '../data/stim/kitchen_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/kitchen_high.jpg',
+                low_image: '../data/stim/kitchen_low.jpg',
+                foil_image: '../data/stim/kitchen_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c4_2_kitchen.jpg',
+                condition: 'category',
+                category: 'kitchen',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/kitchen_high.jpg',
+                low_image: '../data/stim/kitchen_low.jpg',
+                foil_image: '../data/stim/kitchen_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_1_kitchen.jpg',
+                condition: 'category',
+                category: 'kitchen',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/kitchen_high.jpg',
+                low_image: '../data/stim/kitchen_low.jpg',
+                foil_image: '../data/stim/kitchen_foil.jpg'
+            });
+
+            // LIGHTHOUSE
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/22_1_high_lighthouse.jpg',
+                condition: 'delayed_recall',
+                category: 'lighthouse',
+                target_image: '../data/stim/lighthouse_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/lighthouse_high.jpg',
+                low_image: '../data/stim/lighthouse_low.jpg',
+                foil_image: '../data/stim/lighthouse_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/23_11_low_lighthouse.jpg',
+                condition: 'delayed_recall',
+                category: 'lighthouse',
+                target_image: '../data/stim/lighthouse_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/lighthouse_high.jpg',
+                low_image: '../data/stim/lighthouse_low.jpg',
+                foil_image: '../data/stim/lighthouse_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c9_11_lighthouse.jpg',
+                condition: 'category',
+                category: 'lighthouse',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/lighthouse_high.jpg',
+                low_image: '../data/stim/lighthouse_low.jpg',
+                foil_image: '../data/stim/lighthouse_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c4_10_lighthouse.jpg',
+                condition: 'category',
+                category: 'lighthouse',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/lighthouse_high.jpg',
+                low_image: '../data/stim/lighthouse_low.jpg',
+                foil_image: '../data/stim/lighthouse_foil.jpg'
+            });
+
+            // LIVINGROOM
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/34_10_high_livingroom.jpg',
+                condition: 'delayed_recall',
+                category: 'livingroom',
+                target_image: '../data/stim/livingroom_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/livingroom_high.jpg',
+                low_image: '../data/stim/livingroom_low.jpg',
+                foil_image: '../data/stim/livingroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/11_10_low_livingroom.jpg',
+                condition: 'delayed_recall',
+                category: 'livingroom',
+                target_image: '../data/stim/livingroom_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/livingroom_high.jpg',
+                low_image: '../data/stim/livingroom_low.jpg',
+                foil_image: '../data/stim/livingroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c2_9_livingroom.jpg',
+                condition: 'category',
+                category: 'livingroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/livingroom_high.jpg',
+                low_image: '../data/stim/livingroom_low.jpg',
+                foil_image: '../data/stim/livingroom_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c3_7_livingroom.jpg',
+                condition: 'category',
+                category: 'livingroom',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/livingroom_high.jpg',
+                low_image: '../data/stim/livingroom_low.jpg',
+                foil_image: '../data/stim/livingroom_foil.jpg'
+            });
+
+            // MOUNTAIN
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/26_14_high_mountain.jpg',
+                condition: 'delayed_recall',
+                category: 'mountain',
+                target_image: '../data/stim/mountain_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/mountain_high.jpg',
+                low_image: '../data/stim/mountain_low.jpg',
+                foil_image: '../data/stim/mountain_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/14_7_low_mountain.jpg',
+                condition: 'delayed_recall',
+                category: 'mountain',
+                target_image: '../data/stim/mountain_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/mountain_high.jpg',
+                low_image: '../data/stim/mountain_low.jpg',
+                foil_image: '../data/stim/mountain_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c10_22_mountain.jpg',
+                condition: 'category',
+                category: 'mountain',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/mountain_high.jpg',
+                low_image: '../data/stim/mountain_low.jpg',
+                foil_image: '../data/stim/mountain_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_4_mountain.jpg',
+                condition: 'category',
+                category: 'mountain',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/mountain_high.jpg',
+                low_image: '../data/stim/mountain_low.jpg',
+                foil_image: '../data/stim/mountain_foil.jpg'
+            });
+
+            // PLAYGROUND
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/7_13_high_playground.jpg',
+                condition: 'delayed_recall',
+                category: 'playground',
+                target_image: '../data/stim/playground_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/playground_high.jpg',
+                low_image: '../data/stim/playground_low.jpg',
+                foil_image: '../data/stim/playground_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/4_5_low_playground.jpg',
+                condition: 'delayed_recall',
+                category: 'playground',
+                target_image: '../data/stim/playground_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/playground_high.jpg',
+                low_image: '../data/stim/playground_low.jpg',
+                foil_image: '../data/stim/playground_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c2_24_playground.jpg',
+                condition: 'category',
+                category: 'playground',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/playground_high.jpg',
+                low_image: '../data/stim/playground_low.jpg',
+                foil_image: '../data/stim/playground_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c10_18_playground.jpg',
+                condition: 'category',
+                category: 'playground',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/playground_high.jpg',
+                low_image: '../data/stim/playground_low.jpg',
+                foil_image: '../data/stim/playground_foil.jpg'
+            });
+
+            // POOL
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/22_13_high_pool.jpg',
+                condition: 'delayed_recall',
+                category: 'pool',
+                target_image: '../data/stim/pool_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/pool_high.jpg',
+                low_image: '../data/stim/pool_low.jpg',
+                foil_image: '../data/stim/pool_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/7_5_low_pool.jpg',
+                condition: 'delayed_recall',
+                category: 'pool',
+                target_image: '../data/stim/pool_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/pool_high.jpg',
+                low_image: '../data/stim/pool_low.jpg',
+                foil_image: '../data/stim/pool_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c7_1_pool.jpg',
+                condition: 'category',
+                category: 'pool',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/pool_high.jpg',
+                low_image: '../data/stim/pool_low.jpg',
+                foil_image: '../data/stim/pool_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_19_pool.jpg',
+                condition: 'category',
+                category: 'pool',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/pool_high.jpg',
+                low_image: '../data/stim/pool_low.jpg',
+                foil_image: '../data/stim/pool_foil.jpg'
+            });
+
+            // STREET
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/20_10_high_street.jpg',
+                condition: 'delayed_recall',
+                category: 'street',
+                target_image: '../data/stim/street_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/street_high.jpg',
+                low_image: '../data/stim/street_low.jpg',
+                foil_image: '../data/stim/street_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/27_10_low_street.jpg',
+                condition: 'delayed_recall',
+                category: 'street',
+                target_image: '../data/stim/street_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/street_high.jpg',
+                low_image: '../data/stim/street_low.jpg',
+                foil_image: '../data/stim/street_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c8_27_street.jpg',
+                condition: 'category',
+                category: 'street',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/street_high.jpg',
+                low_image: '../data/stim/street_low.jpg',
+                foil_image: '../data/stim/street_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c10_26_street.jpg',
+                condition: 'category',
+                category: 'street',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/street_high.jpg',
+                low_image: '../data/stim/street_low.jpg',
+                foil_image: '../data/stim/street_foil.jpg'
+            });
+
+            // TOWER
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/22_18_high_tower.jpg',
+                condition: 'delayed_recall',
+                category: 'tower',
+                target_image: '../data/stim/tower_high.jpg',
+                memorability: 'high',
+                high_image: '../data/stim/tower_high.jpg',
+                low_image: '../data/stim/tower_low.jpg',
+                foil_image: '../data/stim/tower_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/delayed_recall/28_8_low_tower.jpg',
+                condition: 'delayed_recall',
+                category: 'tower',
+                target_image: '../data/stim/tower_low.jpg',
+                memorability: 'low',
+                high_image: '../data/stim/tower_high.jpg',
+                low_image: '../data/stim/tower_low.jpg',
+                foil_image: '../data/stim/tower_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c14_13_tower.jpg',
+                condition: 'category',
+                category: 'tower',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/tower_high.jpg',
+                low_image: '../data/stim/tower_low.jpg',
+                foil_image: '../data/stim/tower_foil.jpg'
+            });
+            stimuli.push({
+                drawing: '../data/drawings/category/c12_2_tower.jpg',
+                condition: 'category',
+                category: 'tower',
+                target_image: null,
+                memorability: null,
+                high_image: '../data/stim/tower_high.jpg',
+                low_image: '../data/stim/tower_low.jpg',
+                foil_image: '../data/stim/tower_foil.jpg'
             });
 
             return stimuli;
-
         }
 
         // attention check trials
