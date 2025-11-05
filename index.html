@@ -907,10 +907,19 @@
             window.onload = function() {
                 // get prolific ID from URL parameter
                 const urlParams = new URLSearchParams(window.location.search);
-                participant_id = urlParams.get('PROLIFIC_ID') || 'debug_' + Date.now();
+                const prolific_pid = urlParams.get('PROLIFIC_PID') || null;
+                const study_id = urlParams.get('STUDY_ID') || null;
+                const session_id = urlParams.get('SESSION_ID') || null;
+
+                participant_id = prolific_pid || 'debug_' + Date.now();
 
                 // datapipe filename with participant ID
                 OSF_CONFIG.filename = `${participant_id}.json`;
+
+                // participant id in every trial?
+                jsPsych.data.addProperties({
+                    participant_id: participant_id
+                });
 
                 jsPsych = initJsPsych({
                     show_progress_bar: true,
@@ -948,7 +957,7 @@
                 const preload = {
                     type: jsPsychPreload,
                     images: getAllPossibleImages(),
-                    message: '<p>Loading...</p>',
+                    message: '<p>Loading... This might take a while. Thank you for your patience!</p>',
                     error_message: '<p>Some images failed to load. Please check your internet connection and refresh the page.</p>',
                     continue_after_error: false,
                     show_progress_bar: true
@@ -1201,7 +1210,7 @@
                         
                         trial_count++;
                         if (trial_count % SAVE_FREQUENCY === 0) {
-                            saveDataIncremental();
+                            saveDataAsJsPsychTrial();
                         }
 
                         // update progress bar
@@ -1238,7 +1247,7 @@
                         data.correct = (data.response === correct_response);
                         trial_count++;
                         if (trial_count % SAVE_FREQUENCY === 0) {
-                            saveDataIncremental();
+                            saveDataAsJsPsychTrial();
                         }
                     }
                 };
@@ -1256,27 +1265,7 @@
                     data_string: () => jsPsych.data.get().json()
                 };
                 
-                jsPsych.addNodeToEndOfTimeline(save_trial);
-            }
-
-            function saveDataIncremental() {
-                if (OSF_CONFIG.experiment_id === 'TODO') {
-                    console.log('offline mode');
-                    console.log('Trial count:', trial_count);
-                    console.log('Recent data:', jsPsych.data.get().last(1).json());
-                    return;
-                }
-                
-                // separate trial for incremental saves
-                const incremental_save = {
-                    type: jsPsychPipe,
-                    action: "save",
-                    experiment_id: OSF_CONFIG.experiment_id,
-                    filename: `${participant_id}_incremental_${Date.now()}.json`,
-                    data_string: () => jsPsych.data.get().json()
-                };
-                
-                jsPsych.addNodeToEndOfTimeline(incremental_save);
+                jsPsych.runTrial(save_trial);
             }
             
             // display completion code
