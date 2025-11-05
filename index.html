@@ -916,11 +916,6 @@
                 // datapipe filename with participant ID
                 OSF_CONFIG.filename = `${participant_id}.json`;
 
-                // participant id in every trial?
-                jsPsych.data.addProperties({
-                    participant_id: participant_id
-                });
-
                 jsPsych = initJsPsych({
                     show_progress_bar: true,
                     auto_update_progress_bar: false,
@@ -933,6 +928,11 @@
                     }
                 });
 
+                // participant id in every trial?
+                jsPsych.data.addProperties({
+                    participant_id: participant_id
+                });
+                
                 buildTimeline();
                 jsPsych.run(timeline);
             }
