@@ -1105,10 +1105,7 @@
                 });
 
                 // randomly select positions to insert attention checks (0-59)
-                const positions = jsPsych.randomization.sampleWithoutReplacement(
-                    Array.from({length: EXPERIMENT_PARAMS.n_trials}, (_, i) => i),
-                    EXPERIMENT_PARAMS.n_attention_checks
-                );
+                const positions = [19, 39, 59];
                 
                 // Convert to a Set for O(1) lookup
                 const positionsSet = new Set(positions);
