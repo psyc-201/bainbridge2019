@@ -16,7 +16,7 @@
         <!-- jsPsych CSS -->
         <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
         <!-- DataPipe for OSF -->
-        <script src="https://pipe.jspsych.org/dist/datapipe.js"></script>
+        <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
         
         <style>
             body {
@@ -75,9 +75,9 @@
             const SAVE_FREQUENCY = 5;
 
             const OSF_CONFIG = {
-                experimentID: 'TODO', // TODO
-                filename: null, // dynamic
-                dataType: 'json'
+                experiment_id: 'ovx64kYVxBXt',
+                filename: null // dynamic by datapipe
+                // dataType: 'json'
             };
 
             const EXPERIMENT_PARAMS = {
@@ -913,7 +913,7 @@
                         displayCompletionCode();
                     },
                     on_close: function() {
-                        saveData();
+                        // saveData();
                     }
                 });
 
@@ -1039,10 +1039,20 @@
                         }
                     ],
                     on_finish: function() {
-                        saveData();
+                        // saveData();
                     }
                 };
                 timeline.push(comments);
+
+                // final save
+                const final_save = {
+                    type: jsPsychPipe,
+                    action: "save",
+                    experiment_id: OSF_CONFIG.experiment_id,
+                    filename: OSF_CONFIG.filename,
+                    data_string: () => jsPsych.data.get().json()
+                };
+                timeline.push(final_save);
 
                 // debrief
                 const debrief = {
@@ -1233,38 +1243,36 @@
                 
             }
 
-            function saveData() {
-                const data = jsPsych.data.get().json();
-                
-                dataPipe(OSF_CONFIG.experimentID, 'data', {
-                    data: data,
+            function saveDataAsJsPsychTrial() {
+                const save_trial = {
+                    type: jsPsychPipe,
+                    action: "save",
+                    experiment_id: OSF_CONFIG.experiment_id,
                     filename: OSF_CONFIG.filename,
-                    format: 'json'
-                }).then(() => {
-                    console.log('data saved successfully');
-                }).catch((error) => {
-                    console.error('ERROR saving data:', error);
-                });
+                    data_string: () => jsPsych.data.get().json()
+                };
+                
+                jsPsych.addNodeToEndOfTimeline(save_trial);
             }
 
             function saveDataIncremental() {
-                // if testing locally don't save yet
-                if (OSF_CONFIG.experimentID === 'TODO') {
-                    console.log('Skipping incremental save - experiment ID not configured');
+                if (OSF_CONFIG.experiment_id === 'TODO') {
+                    console.log('offline mode');
+                    console.log('Trial count:', trial_count);
+                    console.log('Recent data:', jsPsych.data.get().last(1).json());
                     return;
                 }
-                // get intermediate data
-                const data = jsPsych.data.get().json();
                 
-                dataPipe(OSF_CONFIG.experimentID, 'data', {
-                    data: data,
-                    filename: OSF_CONFIG.filename,
-                    format: 'json'
-                }).then(() => {
-                    console.log('incremental data saved successfully');
-                }).catch((error) => {
-                    console.error('ERROR saving incremental data:', error);
-                });
+                // separate trial for incremental saves
+                const incremental_save = {
+                    type: jsPsychPipe,
+                    action: "save",
+                    experiment_id: OSF_CONFIG.experiment_id,
+                    filename: `${participant_id}_incremental_${Date.now()}.json`,
+                    data_string: () => jsPsych.data.get().json()
+                };
+                
+                jsPsych.addNodeToEndOfTimeline(incremental_save);
             }
             
             // display completion code
