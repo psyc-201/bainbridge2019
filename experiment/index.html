@@ -71,6 +71,8 @@
         
         <script>
             // config
+            let trial_count = 0;
+            const SAVE_FREQUENCY = 5;
 
             const OSF_CONFIG = {
                 experimentID: 'TODO', // TODO
@@ -867,6 +869,27 @@
                 },
             ];
 
+            function getAllPossibleImages() {
+                const all_images = [];
+
+                const all_drawings = generateDrawingStimuli();
+                all_drawings.forEach(stimulus => {
+                    all_images.push(stimulus.drawing);
+                    all_images.push(stimulus.high_image);
+                    all_images.push(stimulus.low_image);
+                    all_images.push(stimulus.foil_image);
+                });
+
+                ATTENTION_CHECKS.forEach(check => {
+                    check.images.forEach(image => {
+                        all_images.push(image);
+                    });
+                });
+
+                return[...new Set(all_images)];
+            }
+
+
             // experiment logic
 
             let jsPsych;
@@ -914,6 +937,17 @@
                 };
                 timeline.push(browser_check);
 
+                // preload images
+                const preload = {
+                    type: jsPsychPreload,
+                    images: getAllPossibleImages(),
+                    message: '<p>Loading...</p>',
+                    error_message: '<p>Some images failed to load. Please check your internet connection and refresh the page.</p>',
+                    continue_after_error: false,
+                    show_progress_bar: true
+                };
+                timeline.push(preload);
+
                 // welcome
                 const welcome = {
                     type: jsPsychHtmlKeyboardResponse,
@@ -922,9 +956,10 @@
                             <h1>Welcome to the Drawing Match!</h1>
                             <p>Thank you for participating in this study.</p>
                             <p>In this experiment, you will see drawings of everyday scenes. Your task is to match each drawing to one of three photographs.</p>
-                            <p>The experiment will take approximately 12 minutes to complete.</p>
+                            <p>The experiment will take 5-10 minutes to complete.</p>
                             <p><strong>Important:</strong></p>
                             <ul style="text-align: left;">
+                                <li>Please enter into **fullscreen** mode on your browser</li>
                                 <li>Please complete this study in a quiet environment without distractions</li>
                                 <li>Do not use the back button in your browser</li>
                                 <li>Please stay focused on the task throughout</li>
@@ -1149,6 +1184,11 @@
                                 data.selected_type = 'foil';
                             }
                         }
+                        
+                        trial_count++;
+                        if (trial_count % SAVE_FREQUENCY === 0) {
+                            saveDataIncremental();
+                        }
 
                         // update progress bar
                         const progress = ((trial_number + 1) / EXPERIMENT_PARAMS.n_trials);
@@ -1182,6 +1222,10 @@
                     },
                     on_finish: function(data) {
                         data.correct = (data.response === correct_response);
+                        trial_count++;
+                        if (trial_count % SAVE_FREQUENCY === 0) {
+                            saveDataIncremental();
+                        }
                     }
                 };
 
@@ -1197,9 +1241,29 @@
                     filename: OSF_CONFIG.filename,
                     format: 'json'
                 }).then(() => {
-                    console.log('Data saved successfully');
+                    console.log('data saved successfully');
                 }).catch((error) => {
-                    console.error('Error saving data:', error);
+                    console.error('ERROR saving data:', error);
+                });
+            }
+
+            function saveDataIncremental() {
+                // if testing locally don't save yet
+                if (OSF_CONFIG.experimentID === 'TODO') {
+                    console.log('Skipping incremental save - experiment ID not configured');
+                    return;
+                }
+                // get intermediate data
+                const data = jsPsych.data.get().json();
+                
+                dataPipe(OSF_CONFIG.experimentID, 'data', {
+                    data: data,
+                    filename: OSF_CONFIG.filename,
+                    format: 'json'
+                }).then(() => {
+                    console.log('incremental data saved successfully');
+                }).catch((error) => {
+                    console.error('ERROR saving incremental data:', error);
                 });
             }
             
