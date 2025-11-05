@@ -6,21 +6,21 @@ function generateDrawingStimuli() {
         drawing: '../data/drawings/delayed_recall/25_13_high_amusementpark.jpg',
         condition: 'delayed_recall',
         category: 'amusementpark',
-        target_image: '../data/stim/amusementpark_high.jpg',
+        target_image: '../data/stim/amusement_park_high.jpg',
         memorability: 'high',
-        high_image: '../data/stim/amusementpark_high.jpg',
-        low_image: '../data/stim/amusementpark_low.jpg',
-        foil_image: '../data/stim/amusementpark_foil.jpg'
+        high_image: '../data/stim/amusement_park_high.jpg',
+        low_image: '../data/stim/amusement_park_low.jpg',
+        foil_image: '../data/stim/amusement_park_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/delayed_recall/24_9_low_amusementpark.jpg',
         condition: 'delayed_recall',
         category: 'amusementpark',
-        target_image: '../data/stim/amusementpark_low.jpg',
+        target_image: '../data/stim/amusement_park_low.jpg',
         memorability: 'low',
-        high_image: '../data/stim/amusementpark_high.jpg',
-        low_image: '../data/stim/amusementpark_low.jpg',
-        foil_image: '../data/stim/amusementpark_foil.jpg'
+        high_image: '../data/stim/amusement_park_high.jpg',
+        low_image: '../data/stim/amusement_park_low.jpg',
+        foil_image: '../data/stim/amusement_park_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/category/c12_27_amusementpark.jpg',
@@ -28,9 +28,9 @@ function generateDrawingStimuli() {
         category: 'amusementpark',
         target_image: null,
         memorability: null,
-        high_image: '../data/stim/amusementpark_high.jpg',
-        low_image: '../data/stim/amusementpark_low.jpg',
-        foil_image: '../data/stim/amusementpark_foil.jpg'
+        high_image: '../data/stim/amusement_park_high.jpg',
+        low_image: '../data/stim/amusement_park_low.jpg',
+        foil_image: '../data/stim/amusement_park_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/category/c8_28_amusementpark.jpg',
@@ -38,9 +38,9 @@ function generateDrawingStimuli() {
         category: 'amusementpark',
         target_image: null,
         memorability: null,
-        high_image: '../data/stim/amusementpark_high.jpg',
-        low_image: '../data/stim/amusementpark_low.jpg',
-        foil_image: '../data/stim/amusementpark_foil.jpg'
+        high_image: '../data/stim/amusement_park_high.jpg',
+        low_image: '../data/stim/amusement_park_low.jpg',
+        foil_image: '../data/stim/amusement_park_foil.jpg'
     });
 
     // BADLANDS
@@ -174,21 +174,21 @@ function generateDrawingStimuli() {
         drawing: '../data/drawings/delayed_recall/4_19_high_diningroom.jpg',
         condition: 'delayed_recall',
         category: 'diningroom',
-        target_image: '../data/stim/diningroom_high.jpg',
+        target_image: '../data/stim/dining_room_high.jpg',
         memorability: 'high',
-        high_image: '../data/stim/diningroom_high.jpg',
-        low_image: '../data/stim/diningroom_low.jpg',
-        foil_image: '../data/stim/diningroom_foil.jpg'
+        high_image: '../data/stim/dining_room_high.jpg',
+        low_image: '../data/stim/dining_room_low.jpg',
+        foil_image: '../data/stim/dining_room_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/delayed_recall/6_11_low_diningroom.jpg',
         condition: 'delayed_recall',
         category: 'diningroom',
-        target_image: '../data/stim/diningroom_low.jpg',
+        target_image: '../data/stim/dining_room_low.jpg',
         memorability: 'low',
-        high_image: '../data/stim/diningroom_high.jpg',
-        low_image: '../data/stim/diningroom_low.jpg',
-        foil_image: '../data/stim/diningroom_foil.jpg'
+        high_image: '../data/stim/dining_room_high.jpg',
+        low_image: '../data/stim/dining_room_low.jpg',
+        foil_image: '../data/stim/dining_room_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/category/c1_2_diningroom.jpg',
@@ -196,9 +196,9 @@ function generateDrawingStimuli() {
         category: 'diningroom',
         target_image: null,
         memorability: null,
-        high_image: '../data/stim/diningroom_high.jpg',
-        low_image: '../data/stim/diningroom_low.jpg',
-        foil_image: '../data/stim/diningroom_foil.jpg'
+        high_image: '../data/stim/dining_room_high.jpg',
+        low_image: '../data/stim/dining_room_low.jpg',
+        foil_image: '../data/stim/dining_room_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/category/c9_19_diningroom.jpg',
@@ -206,9 +206,9 @@ function generateDrawingStimuli() {
         category: 'diningroom',
         target_image: null,
         memorability: null,
-        high_image: '../data/stim/diningroom_high.jpg',
-        low_image: '../data/stim/diningroom_low.jpg',
-        foil_image: '../data/stim/diningroom_foil.jpg'
+        high_image: '../data/stim/dining_room_high.jpg',
+        low_image: '../data/stim/dining_room_low.jpg',
+        foil_image: '../data/stim/dining_room_foil.jpg'
     });
 
     // FARM
@@ -468,21 +468,21 @@ function generateDrawingStimuli() {
         drawing: '../data/drawings/delayed_recall/34_10_high_livingroom.jpg',
         condition: 'delayed_recall',
         category: 'livingroom',
-        target_image: '../data/stim/livingroom_high.jpg',
+        target_image: '../data/stim/living_room_high.jpg',
         memorability: 'high',
-        high_image: '../data/stim/livingroom_high.jpg',
-        low_image: '../data/stim/livingroom_low.jpg',
-        foil_image: '../data/stim/livingroom_foil.jpg'
+        high_image: '../data/stim/living_room_high.jpg',
+        low_image: '../data/stim/living_room_low.jpg',
+        foil_image: '../data/stim/living_room_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/delayed_recall/11_10_low_livingroom.jpg',
         condition: 'delayed_recall',
         category: 'livingroom',
-        target_image: '../data/stim/livingroom_low.jpg',
+        target_image: '../data/stim/living_room_low.jpg',
         memorability: 'low',
-        high_image: '../data/stim/livingroom_high.jpg',
-        low_image: '../data/stim/livingroom_low.jpg',
-        foil_image: '../data/stim/livingroom_foil.jpg'
+        high_image: '../data/stim/living_room_high.jpg',
+        low_image: '../data/stim/living_room_low.jpg',
+        foil_image: '../data/stim/living_room_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/category/c2_9_livingroom.jpg',
@@ -490,9 +490,9 @@ function generateDrawingStimuli() {
         category: 'livingroom',
         target_image: null,
         memorability: null,
-        high_image: '../data/stim/livingroom_high.jpg',
-        low_image: '../data/stim/livingroom_low.jpg',
-        foil_image: '../data/stim/livingroom_foil.jpg'
+        high_image: '../data/stim/living_room_high.jpg',
+        low_image: '../data/stim/living_room_low.jpg',
+        foil_image: '../data/stim/living_room_foil.jpg'
     });
     stimuli.push({
         drawing: '../data/drawings/category/c3_7_livingroom.jpg',
@@ -500,9 +500,9 @@ function generateDrawingStimuli() {
         category: 'livingroom',
         target_image: null,
         memorability: null,
-        high_image: '../data/stim/livingroom_high.jpg',
-        low_image: '../data/stim/livingroom_low.jpg',
-        foil_image: '../data/stim/livingroom_foil.jpg'
+        high_image: '../data/stim/living_room_high.jpg',
+        low_image: '../data/stim/living_room_low.jpg',
+        foil_image: '../data/stim/living_room_foil.jpg'
     });
 
     // MOUNTAIN

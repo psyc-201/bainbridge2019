@@ -13,6 +13,26 @@ CATEGORIES = [
     'livingroom', 'mountain', 'playground', 'pool', 'street', 'tower'
 ]
 
+CATEGORY_TO_STIM = {
+    'amusementpark': 'amusement_park',
+    'badlands': 'badlands',
+    'bathroom': 'bathroom',
+    'bedroom': 'bedroom',
+    'diningroom': 'dining_room',
+    'farm': 'farm',
+    'fountain': 'fountain',
+    'garden': 'garden',
+    'house': 'house',
+    'kitchen': 'kitchen',
+    'lighthouse': 'lighthouse',
+    'livingroom': 'living_room',
+    'mountain': 'mountain',
+    'playground': 'playground',
+    'pool': 'pool',
+    'street': 'street',
+    'tower': 'tower'
+}
+
 def parse_delayed_recall_filename(filename):
     """subnum]_[imnum]_[memorability]_[scene].jpg"""
     parts = filename.replace('.jpg', '').split('_')
@@ -63,52 +83,53 @@ def main():
     
     for category in CATEGORIES:
         print(f"    // {category.upper()}")
+        stim_name = CATEGORY_TO_STIM[category]
         
-        # Delayed recall - high
+        # delayed recall - high memorability
         high_file = delayed_by_category[category]['high']
         if high_file:
             print(f"    stimuli.push({{")
             print(f"        drawing: '../data/drawings/delayed_recall/{high_file}',")
             print(f"        condition: 'delayed_recall',")
             print(f"        category: '{category}',")
-            print(f"        target_image: '../data/stim/{category}_high.jpg',")
+            print(f"        target_image: '../data/stim/{stim_name}_high.jpg',")  # ✅ Use stim_name
             print(f"        memorability: 'high',")
-            print(f"        high_image: '../data/stim/{category}_high.jpg',")
-            print(f"        low_image: '../data/stim/{category}_low.jpg',")
-            print(f"        foil_image: '../data/stim/{category}_foil.jpg'")
+            print(f"        high_image: '../data/stim/{stim_name}_high.jpg',")
+            print(f"        low_image: '../data/stim/{stim_name}_low.jpg',")
+            print(f"        foil_image: '../data/stim/{stim_name}_foil.jpg'")
             print(f"    }});")
         else:
             print(f"// !!!!!!no high-memorable delayed recall drawing found!!!!!")
         
-        # Delayed recall - low
+        # delayed recall - low memorability
         low_file = delayed_by_category[category]['low']
         if low_file:
             print(f"    stimuli.push({{")
             print(f"        drawing: '../data/drawings/delayed_recall/{low_file}',")
             print(f"        condition: 'delayed_recall',")
             print(f"        category: '{category}',")
-            print(f"        target_image: '../data/stim/{category}_low.jpg',")
+            print(f"        target_image: '../data/stim/{stim_name}_low.jpg',")  # ✅ Use stim_name
             print(f"        memorability: 'low',")
-            print(f"        high_image: '../data/stim/{category}_high.jpg',")
-            print(f"        low_image: '../data/stim/{category}_low.jpg',")
-            print(f"        foil_image: '../data/stim/{category}_foil.jpg'")
+            print(f"        high_image: '../data/stim/{stim_name}_high.jpg',")
+            print(f"        low_image: '../data/stim/{stim_name}_low.jpg',")
+            print(f"        foil_image: '../data/stim/{stim_name}_foil.jpg'")
             print(f"    }});")
         else:
             print(f"// !!!no low-memorable delayed recall drawing found!!!")
         
-        # Category drawings
+        # category drawings
         cat_files = category_by_category[category]
         if len(cat_files) >= 2:
-            for cat_file in cat_files[:2]:  # Take first 2
+            for cat_file in cat_files[:2]:
                 print(f"    stimuli.push({{")
                 print(f"        drawing: '../data/drawings/category/{cat_file}',")
                 print(f"        condition: 'category',")
                 print(f"        category: '{category}',")
                 print(f"        target_image: null,")
                 print(f"        memorability: null,")
-                print(f"        high_image: '../data/stim/{category}_high.jpg',")
-                print(f"        low_image: '../data/stim/{category}_low.jpg',")
-                print(f"        foil_image: '../data/stim/{category}_foil.jpg'")
+                print(f"        high_image: '../data/stim/{stim_name}_high.jpg',")
+                print(f"        low_image: '../data/stim/{stim_name}_low.jpg',")
+                print(f"        foil_image: '../data/stim/{stim_name}_foil.jpg'")
                 print(f"    }});")
         else:
             print(f"// less than 2 category drawings found ({len(cat_files)} available)")
