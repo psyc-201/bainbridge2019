@@ -1104,8 +1104,8 @@
                     return createAttentionCheckTrial(check, index);
                 });
 
-                // randomly select positions to insert attention checks (0-59)
-                const positions = [19, 39, 59];
+                // space out attention checks
+                const positions = [10, 35, 49];
                 
                 // Convert to a Set for O(1) lookup
                 const positionsSet = new Set(positions);
@@ -1115,13 +1115,13 @@
                 let attention_counter = 0;
 
                 for (let i = 0; i < EXPERIMENT_PARAMS.n_trials; i++) {
-                    // Check if we should insert an attention check at this position
+                    // check if we should insert an attention check at this position
                     if (positionsSet.has(i) && attention_counter < attention_trials.length) {
                         all_trials.push(attention_trials[attention_counter]);
                         attention_counter++;
                     }
                     
-                    // Add the regular experimental trial
+                    // add the regular experimental trial
                     if (trial_counter < experimental_trials.length) {
                         all_trials.push(experimental_trials[trial_counter]);
                         trial_counter++;
