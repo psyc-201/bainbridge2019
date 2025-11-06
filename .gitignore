@@ -64,3 +64,4 @@ rsconnect/
 **/*.quarto_ipynb
 .ipynb_checkpoints/
 _output/
+output/*.csv
