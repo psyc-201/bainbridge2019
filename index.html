@@ -16,7 +16,7 @@
         <!-- jsPsych CSS -->
         <link href="https://unpkg.com/jspsych@7.3.4/css/jspsych.css" rel="stylesheet" type="text/css" />
         <!-- DataPipe for OSF -->
-        <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+        <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.4"></script>
         
         <style>
             body {
@@ -1257,15 +1257,7 @@
             }
 
             function saveDataAsJsPsychTrial() {
-                const save_trial = {
-                    type: jsPsychPipe,
-                    action: "save",
-                    experiment_id: OSF_CONFIG.experiment_id,
-                    filename: OSF_CONFIG.filename,
-                    data_string: () => jsPsych.data.get().json()
-                };
-                
-                jsPsych.runTrial(save_trial);
+                console.log("Save checkpoint reached at trial:", trial_count);
             }
             
             // display completion code
