@@ -117,7 +117,7 @@
                 'tower'
             ];
 
-            const COMPLETION_CODE = 'TODO' // TODO
+            const COMPLETION_CODE = 'CUNVMFZA' // TODO: currently using pilot B completion code
             
             // stimulus
             
@@ -916,14 +916,14 @@
                 participant_id = prolific_pid || 'debug_' + Date.now();
 
                 // datapipe filename with participant ID
-                OSF_CONFIG.filename = `${participant_id}.json`;
+                OSF_CONFIG.filename = `${participant_id}_pilotB.json`;
 
                 jsPsych = initJsPsych({
                     show_progress_bar: true,
                     auto_update_progress_bar: false,
                     message_progress_bar: 'Progress',
                     on_finish: function() {
-                        displayCompletionCode();
+                        // displayCompletionCode();
                     },
                     on_close: function() {
                         // saveData();
@@ -1126,7 +1126,15 @@
                             </div>
                         `;
                     },
-                    choices: "ALL_KEYS"
+                    choices: "ALL_KEYS",
+                    on_finish: function() {
+                        const urlParams = new URLSearchParams(window.location.search);
+                        const prolific_pid = urlParams.get('PROLIFIC_PID');
+                        
+                        if (prolific_pid) {
+                            window.location.href = `https://app.prolific.com/submissions/complete?cc=CUNVMFZA`; // TODO
+                        }
+                    }
                 };
                 timeline.push(debrief);
             }
