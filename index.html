@@ -8,7 +8,7 @@
         <script src="https://unpkg.com/jspsych@7.3.4"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
-        <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.3"></script>
+        <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.2.0"></script>
         <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
         <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
@@ -1209,6 +1209,7 @@
                     choices: shuffled_images,
                     button_html: '<button class="jspsych-btn"><img src="%choice%" style="height:350px; width:auto;"></button>',
                     prompt: '<p>Which photograph does this drawing best represent?</p>',
+                    enable_button_after: 1000,
                     data: {
                         task: 'main_trial',
                         trial_number: trial_number,
@@ -1277,6 +1278,7 @@
                     choices: shuffled_images,
                     button_html: '<button class="jspsych-btn"><img src="%choice%" style="height:350px; width:auto;"></button>',
                     prompt: `<div style="padding: 20px 0; font-size: 24px; font-weight: bold;">${check.instruction}</div>`,
+                    enable_button_after: 1000,
                     data: {
                         task: 'attention_check',
                         is_attention_check: true,
