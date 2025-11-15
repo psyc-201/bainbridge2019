@@ -916,7 +916,7 @@
                 participant_id = prolific_pid || 'debug_' + Date.now();
 
                 // datapipe filename with participant ID
-                OSF_CONFIG.filename = `${participant_id}_pilotB.json`;
+                OSF_CONFIG.filename = `${participant_id}.json`;
 
                 jsPsych = initJsPsych({
                     show_progress_bar: true,
@@ -1275,9 +1275,8 @@
 
             // create attention check trial
             function createAttentionCheckTrial(check, index) {
-                const shuffled_images = jsPsych.randomization.shuffle([...check.images]);
                 const correct_image = check.images[check.correct_position];
-                const correct_response = shuffled_images.indexOf(correct_image);
+                const correct_response = check.correct_position;
 
                 const trial = {
                     type: jsPsychImageButtonResponse,

@@ -5,7 +5,7 @@ library(stringr)
 library(readr)
 library(purrr)
 
-json_files <- list.files("~/Desktop", pattern = "debug_.*\\.json$", full.names = TRUE)
+json_files <- list.files("~/Desktop/replication-pilotB", pattern = ".*_pilotB\\.json$", full.names = TRUE)
 
 raw_data <- map_dfr(json_files, function(file) {
   data <- fromJSON(file, flatten = TRUE)
@@ -63,11 +63,36 @@ retained_participants <- participant_exclusions %>%
   filter(!exclude_any) %>%
   pull(participant_id)
 
+# calculate rt threshold for exclusions
+# method 1: mean - 2.5*sd
+all_exp_trials <- raw_data %>%
+  filter(trial_type == "image-button-response", 
+         task == "main_trial",
+         !is_attention_check)
+
+rt_mean <- mean(all_exp_trials$rt, na.rm = TRUE)
+rt_sd <- sd(all_exp_trials$rt, na.rm = TRUE)
+rt_threshold_sd <- rt_mean - 2.5 * rt_sd
+
+cat("RT statistics for threshold calculation:\n")
+cat("mean:", round(rt_mean), "ms\n")
+cat("sd:", round(rt_sd), "ms\n") 
+cat("threshold (mean - 2.5*sd):", round(rt_threshold_sd), "ms\n")
+
+# choose threshold method!!!!!!
+# option1: sd-based threshold
+rt_threshold <- rt_threshold_sd
+
+# option2: fixed threshold
+# rt_threshold <- 500
+
+cat("using rt threshold:", rt_threshold, "ms\n")
+
 # trial exclusions  
 exp_trials_filtered <- exp_trials %>%
   filter(participant_id %in% retained_participants,
          !is_attention_check) %>%
-  mutate(exclude_rt = rt < 500)
+  mutate(exclude_rt = rt < rt_threshold) 
 
 # check >20% rt exclusions per participant
 rt_exclusion_check <- exp_trials_filtered %>%
@@ -100,7 +125,6 @@ clean_trials <- clean_trials %>%
       TRUE ~ NA_character_
     )
   )
-
 
 # add debugging after each exclusion step
 cat("initial participants:", length(unique(exp_trials$participant_id)), "\n")
